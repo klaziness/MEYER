@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "SearchUsers";
+}
+
+
+<div ng-app="SearchUser" ng-controller="mainController">
+    <br>
+    <div class="col">
+        <div class="row">
+            <div class="col-lg-11">
+                <input type="text" id="SearchUsers" ng-keyup="getSearch($event)" ng-model="keySearch" placeholder="Please enter keyword(s) for search" class="form-control">
+            </div>
+            <div class="col-lg-1">
+                <button ng-click="clickSearch()" type="button" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+        <br>
+        <div class="col">
+            <div class="row">
+                <div ng-repeat="x in listUser" class="card" style="width: 17rem;">
+                    <div class="card-body">
+                        <img width="50" height="170" class="card-img-top" src="{{x.Pic}}" alt="PiC">
+                        <p class="card-title">{{x.Fullname}}</p>
+                        <p class="card-text">{{AsSise}}{{x.Username}}</p>
+                        <a href="#" ng-click="clickViewRepo(x.R_epo)" class="btn btn-primary">View Repo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
