@@ -2,6 +2,7 @@
 SearchUser.controller('mainController', function ($scope, $http) {
 
     $scope.AsSise = "@";
+    $scope.GuideStatus = true;
 
     $scope.getSearch = function (keyEvent) {
         switch (keyEvent.which) {
@@ -16,6 +17,16 @@ SearchUser.controller('mainController', function ($scope, $http) {
     };
 
     function getData(keySearch) {
+
+        switch ($scope.GuideStatus) {
+            case true:
+                $('#modalGuide').modal('show', { backdrop: 'static', keyboard: false });
+                break;
+            case false:
+                $('#modalGuide').modal('hide');
+                break;
+        }
+
         $scope.listUser = [];
         var url = "https://api.github.com/search/users?q=";
 
@@ -53,6 +64,11 @@ SearchUser.controller('mainController', function ($scope, $http) {
         });
 
     }
+
+    $scope.closeModalGuide = function () {
+        $scope.GuideStatus = false;
+        $('#modalGuide').modal('hide');
+    };
 
     $scope.clickViewRepo = function (url, name) {
 
