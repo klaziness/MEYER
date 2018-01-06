@@ -17,16 +17,55 @@
         </div>
         <br>
         <div class="col">
-            <div class="row">
-                <div ng-repeat="x in listUser" class="card" style="width: 17rem;">
-                    <div class="card-body">
-                        <img width="50" height="170" class="card-img-top" src="{{x.Pic}}" alt="PiC">
-                        <p class="card-title">{{x.Fullname}}</p>
-                        <p class="card-text">{{AsSise}}{{x.Username}}</p>
-                        <a href="#" ng-click="clickViewRepo(x.R_epo)" class="btn btn-primary">View Repo</a>
+            <div class="col-lg-12">
+                <div class="row">
+                    <div ng-repeat="x in listUser" class="col-lg-4">
+                        <div class="card" style="width: 16rem;">
+                            <div class="card-body">
+                                <img width="50" height="170" class="card-img-top" src="{{x.Pic}}" alt="PiC">
+                                <p class="card-title">{{x.Fullname}}</p>
+                                <p class="card-text">{{AsSise}}{{x.Username}}</p>
+                                <button type="button" ng-click="clickViewRepo(x.R_epo,x.Username)" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">View Repo</button>
+                                @*<a href="#" ng-click="clickViewRepo(x.R_epo)" class="btn btn-primary">View Repo</a>*@
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Repository : {{userName}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div ng-repeat="a in v_Repo" class="col-lg-4">
+                                <div class="card bg-light mb-3" style="max-width: 16rem;">
+                                    <div class="card-header">{{a.v_name}}</div>
+                                    <div class="card-body">
+                                        <h6 ng-if="a.v_checkUndefined" class="card-title">Language : {{a.v_language}}</h6>
+                                        <p class="card-text">{{a.v_description}}</p>
+                                        <button type="button" class="btn btn-primary btn-sm" disabled><span class="fa fa-star-o" aria-hidden="true"></span> {{a.v_stargazers_count}}</button>
+                                        <button type="button" class="btn btn-primary btn-sm" disabled><span class="fa fa-code-fork" aria-hidden="true"></span> {{a.v_forks_count}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
